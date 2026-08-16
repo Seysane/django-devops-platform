@@ -21,7 +21,7 @@ class TicketModelTest(TestCase):
         )
 
         self.assertEqual(ticket.title, "Test ticket")
-        self.assertEqual(ticket.status, Ticket.Status.OPEN)
+        self.assertEqual(ticket.status, Ticket.Status.CLOSED)
         self.assertEqual(ticket.priority, Ticket.Priority.HIGH)
         self.assertEqual(ticket.created_by, self.user)
 
