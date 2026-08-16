@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from projects.models import Project
 
 class Ticket(models.Model):
     class Status(models.TextChoices):
@@ -14,6 +15,8 @@ class Ticket(models.Model):
         MEDIUM = "MEDIUM", "Medium"
         HIGH = "HIGH", "High"
         CRITICAL = "CRITICAL", "Critical"
+
+    
 
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -43,6 +46,15 @@ class Ticket(models.Model):
         blank=True,
         related_name="assigned_tickets",
     )
+
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name="tickets",
+        null=True,
+        blank=True,
+    )
+
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
